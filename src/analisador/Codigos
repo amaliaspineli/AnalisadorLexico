@@ -1,0 +1,215 @@
+int num_linha=1;
+	public javax.swing.JTextArea jText;
+	public void AnaliseLexica() throws Exception{
+		
+		jText = textArea;
+	    String expr;
+	    expr = textArea.getText();
+	     
+	    analisador.Lexer lexer = new analisador.Lexer(new StringReader(expr));
+	    
+	    String resultado="";
+	    
+	    while(true){
+	         
+	        Token token = lexer.yylex();
+	                 
+	        if(token == null){
+	            
+	             ((JLabel) textArea_1).setText(resultado);
+	             return;
+	        }      
+	        System.out.println(token.toString());
+	        if (token.toString().equals("quebra_linha")){
+	            num_linha++;
+	        }else{
+	        
+	            switch(token){
+				case erro:
+					resultado = resultado + "Simbolo não encontrado. \n";
+					break;
+				case num:
+					resultado = resultado + "Token: " + token + " " + lexer.lexeme + "\n";
+					break;
+				case FinalLinha:
+					resultado = resultado + "Token: " + token + " " + lexer.lexeme + "\n";
+					break;	
+				case AbParentese:
+					resultado = resultado + "Token: " + token + " " + lexer.lexeme + "\n";
+					break;
+				case FchParentese:
+					resultado = resultado + "Token: " + token + " " + lexer.lexeme + "\n";
+					break;
+				case AbColchete:
+					resultado = resultado + "Token: " + token + " " + lexer.lexeme + "\n";
+					break;
+				case FchColchete:
+					resultado = resultado + "Token: " + token + " " + lexer.lexeme + "\n";
+					break;
+				case AbChave:
+					resultado = resultado + "Token: " + token + " " + lexer.lexeme + "\n";
+					break;
+				case FchChave:
+					resultado = resultado + "Token: " + token + " " + lexer.lexeme + "\n";
+					break;
+				case se:
+					resultado = resultado + "Token: " + token + " " + lexer.lexeme + "\n";
+					break;
+				case senao:
+					resultado = resultado + "Token: " + token + " " + lexer.lexeme + "\n";
+					break;
+				case enquanto:
+					resultado = resultado + "Token: " + token + " " + lexer.lexeme + "\n";
+					break;
+				case para:
+					resultado = resultado + "Token: " + token + " " + lexer.lexeme + "\n";
+					break;
+				case caso:
+					resultado = resultado + "Token: " + token + " " + lexer.lexeme + "\n";
+					break;
+				case escreva:
+					resultado = resultado + "Token: " + token + " " + lexer.lexeme + "\n";
+					break;
+				case leia:
+					resultado = resultado + "Token: " + token + " " + lexer.lexeme + "\n";
+					break;
+				case retorna:
+					resultado = resultado + "Token: " + token + " " + lexer.lexeme + "\n";
+					break;
+				case atribuicao:
+					resultado = resultado + "Token: " + token + " " + lexer.lexeme + "\n";
+					break;
+				case comentario:
+					resultado = resultado + "Token: " + token + " " + lexer.lexeme + "\n";
+					break;
+				case Variavel:
+					resultado = resultado + "Token: " + token + " " + lexer.lexeme + "\n";
+					break;
+				case OpRelacional:
+					resultado = resultado + "Token: " + token + " " + lexer.lexeme + "\n";
+					break;
+				case OpMatematica:
+					resultado = resultado + "Token: " + token + " " + lexer.lexeme + "\n";
+					break;
+				case trigonometria:
+					resultado = resultado + "Token: " + token + " " + lexer.lexeme + "\n";
+					break;
+				case tipo:
+					resultado = resultado + "Token: " + token + " " + lexer.lexeme + "\n";
+					break;
+				case literal:
+					resultado = resultado + "Token: " + token + " " + lexer.lexeme + "\n";
+					break;
+					
+					default:
+						resultado = resultado + "Token: " + token + "\n";
+				}
+			}
+		}
+	}
+	
+	
+public void AnaliseLexica() throws Exception{
+		File arquivo = new File("arquivo.txt");
+		try (PrintWriter writer = new PrintWriter(arquivo)){
+			writer.print(textArea.getText());
+		} catch (FileNotFoundException e) {
+			Logger.getLogger(lexico.class.getName()).log(Level.SEVERE,null,e);
+		}
+		Reader reader1 = new FileReader("arquivo.txt");
+		Reader reader = new BufferedReader(reader1);
+		Lexer lexer = new Lexer(reader);
+		String resultado = "";
+		
+		
+		while(true){
+			Token token = lexer.yylex();
+			if(token == null){
+				resultado = resultado+"EOF";
+				((JLabel) textArea_1).setText(resultado);
+				return;
+			}
+			switch(token){
+			case erro:
+				resultado = resultado + "Simbolo não encontrado. \n";
+				break;
+			case num:
+				resultado = resultado + "Token: " + token + " " + lexer.lexeme + "\n";
+				break;
+			case FinalLinha:
+				resultado = resultado + "Token: " + token + " " + lexer.lexeme + "\n";
+				break;	
+			case AbParentese:
+				resultado = resultado + "Token: " + token + " " + lexer.lexeme + "\n";
+				break;
+			case FchParentese:
+				resultado = resultado + "Token: " + token + " " + lexer.lexeme + "\n";
+				break;
+			case AbColchete:
+				resultado = resultado + "Token: " + token + " " + lexer.lexeme + "\n";
+				break;
+			case FchColchete:
+				resultado = resultado + "Token: " + token + " " + lexer.lexeme + "\n";
+				break;
+			case AbChave:
+				resultado = resultado + "Token: " + token + " " + lexer.lexeme + "\n";
+				break;
+			case FchChave:
+				resultado = resultado + "Token: " + token + " " + lexer.lexeme + "\n";
+				break;
+			case se:
+				resultado = resultado + "Token: " + token + " " + lexer.lexeme + "\n";
+				break;
+			case senao:
+				resultado = resultado + "Token: " + token + " " + lexer.lexeme + "\n";
+				break;
+			case enquanto:
+				resultado = resultado + "Token: " + token + " " + lexer.lexeme + "\n";
+				break;
+			case para:
+				resultado = resultado + "Token: " + token + " " + lexer.lexeme + "\n";
+				break;
+			case caso:
+				resultado = resultado + "Token: " + token + " " + lexer.lexeme + "\n";
+				break;
+			case escreva:
+				resultado = resultado + "Token: " + token + " " + lexer.lexeme + "\n";
+				break;
+			case leia:
+				resultado = resultado + "Token: " + token + " " + lexer.lexeme + "\n";
+				break;
+			case retorna:
+				resultado = resultado + "Token: " + token + " " + lexer.lexeme + "\n";
+				break;
+			case atribuicao:
+				resultado = resultado + "Token: " + token + " " + lexer.lexeme + "\n";
+				break;
+			case comentario:
+				resultado = resultado + "Token: " + token + " " + lexer.lexeme + "\n";
+				break;
+			case Variavel:
+				resultado = resultado + "Token: " + token + " " + lexer.lexeme + "\n";
+				break;
+			case OpRelacional:
+				resultado = resultado + "Token: " + token + " " + lexer.lexeme + "\n";
+				break;
+			case OpMatematica:
+				resultado = resultado + "Token: " + token + " " + lexer.lexeme + "\n";
+				break;
+			case trigonometria:
+				resultado = resultado + "Token: " + token + " " + lexer.lexeme + "\n";
+				break;
+			case tipo:
+				resultado = resultado + "Token: " + token + " " + lexer.lexeme + "\n";
+				break;
+			case literal:
+				resultado = resultado + "Token: " + token + " " + lexer.lexeme + "\n";
+				break;
+				
+				default:
+					resultado = resultado + "Token: " + token + "\n";
+			}
+		}
+	}	
+	
+	
